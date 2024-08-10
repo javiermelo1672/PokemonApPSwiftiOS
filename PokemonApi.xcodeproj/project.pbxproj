@@ -18,6 +18,7 @@
 		43CF0D4D2C67FB570080754C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF0D4C2C67FB570080754C /* HomeViewModel.swift */; };
 		43CF0D4F2C67FB6D0080754C /* DetailHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF0D4E2C67FB6D0080754C /* DetailHomeViewModel.swift */; };
 		43CF0D522C67FC680080754C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF0D512C67FC680080754C /* HomeView.swift */; };
+		43CF0D552C6807C60080754C /* NetworkComponent in Frameworks */ = {isa = PBXBuildFile; productRef = 43CF0D542C6807C60080754C /* NetworkComponent */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43CF0D422C67D4BC0080754C /* HomeViewComponent in Frameworks */,
+				43CF0D552C6807C60080754C /* NetworkComponent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +230,7 @@
 			name = PokemonApi;
 			packageProductDependencies = (
 				43CF0D412C67D4BC0080754C /* HomeViewComponent */,
+				43CF0D542C6807C60080754C /* NetworkComponent */,
 			);
 			productName = PokemonApi;
 			productReference = 43CF0D132C67CAF50080754C /* PokemonApi.app */;
@@ -303,6 +306,7 @@
 			mainGroup = 43CF0D0A2C67CAF50080754C;
 			packageReferences = (
 				43CF0D402C67D4BC0080754C /* XCLocalSwiftPackageReference "HomeViewComponent" */,
+				43CF0D532C6807C60080754C /* XCLocalSwiftPackageReference "NetworkComponent" */,
 			);
 			productRefGroup = 43CF0D142C67CAF50080754C /* Products */;
 			projectDirPath = "";
@@ -686,12 +690,20 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = HomeViewComponent;
 		};
+		43CF0D532C6807C60080754C /* XCLocalSwiftPackageReference "NetworkComponent" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = NetworkComponent;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		43CF0D412C67D4BC0080754C /* HomeViewComponent */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = HomeViewComponent;
+		};
+		43CF0D542C6807C60080754C /* NetworkComponent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkComponent;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
