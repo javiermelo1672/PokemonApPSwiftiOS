@@ -13,7 +13,8 @@ struct HomeView: View {
     @StateObject var homeViewModel = HomeViewModel()
     
     var body: some View {
-        HomeScreen(homeViewModel)
+        HomeScreen<HomeViewModel>()
+            .environmentObject(homeViewModel)
             .fullScreenCover(isPresented: $homeViewModel.showNextScreen, content: {
                 switch homeViewModel.routeDestination {
                 case .none:

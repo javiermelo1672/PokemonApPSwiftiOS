@@ -9,10 +9,9 @@ import SwiftUI
 
 public struct HomeScreen<Model>: View where Model: HomeScreenProtocol {
     
-    @ObservedObject private var viewModel: Model
+    @EnvironmentObject var viewModel: Model
     
-    public init(_ viewModel: Model) {
-        _viewModel = ObservedObject(wrappedValue: viewModel)
+    public init() {
     }
     
     public var body: some View {
@@ -22,7 +21,7 @@ public struct HomeScreen<Model>: View where Model: HomeScreenProtocol {
                     if viewModel.isLoading {
                         createLoadingView(reader: reader)
                     } else {
-                        createListView
+                        createListView(reader: reader)
                     }
                 }.navigationTitle(GlobalStrings.home)
             }
@@ -33,19 +32,31 @@ public struct HomeScreen<Model>: View where Model: HomeScreenProtocol {
 extension HomeScreen {
     @ViewBuilder
     internal func createLoadingView(reader: GeometryProxy) -> some View {
+        skeletonView(view: ProgressView()
+            .scaleEffect(2), reader: reader)
+    }
+    
+    @ViewBuilder
+    internal func createEmptyView() -> some View {
+        Text(GlobalStrings.emptyMessage).font(.body)
+    }
+    
+    @ViewBuilder
+    internal func skeletonView(view: any View, reader: GeometryProxy) -> some View {
         VStack(alignment: .center) {
             Spacer()
-            ProgressView()
-                .scaleEffect(2)
+            AnyView(view)
             Spacer()
         }.frame(width: reader.size.width,
                 height: reader.size.height)
     }
     
-    internal var createListView: some View {
-        LazyVGrid(columns: createGrid(), content: {
-            if let pokemonList = viewModel.pokemonList {
-                ForEach(pokemonList, id: \.self) { item in
+    
+    @ViewBuilder
+    internal func createListView(reader: GeometryProxy) -> some View {
+        if let pokemonList = viewModel.pokemonList {
+            LazyVGrid(columns: createGrid(), content: {
+                ForEach(pokemonList.pokemonList, id: \.self) { item in
                     Button(action: {
                         viewModel.onTapCard(pokemonSelected: item)
                     }, label: {
@@ -53,8 +64,10 @@ extension HomeScreen {
                                       labelName: item.labelName)
                     })
                 }
-            }
-        })
+            }).padding(.horizontal, 15)
+        } else {
+            skeletonView(view: createEmptyView(), reader: reader)
+        }
     }
     
     internal func createGrid() -> [GridItem] {

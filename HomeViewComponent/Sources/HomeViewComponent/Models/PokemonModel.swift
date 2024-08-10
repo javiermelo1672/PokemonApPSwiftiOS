@@ -8,7 +8,13 @@
 import Foundation
 
 public struct PokemonModelList {
-    public let pokemonList: [PokemonModel]
+    public var pokemonList: [PokemonModel]
+    public var nextUrl: String
+    
+    public init(pokemonList: [PokemonModel], nextUrl: String) {
+        self.pokemonList = pokemonList
+        self.nextUrl = nextUrl
+    }
 }
 
 public struct PokemonModel: Hashable, Identifiable {

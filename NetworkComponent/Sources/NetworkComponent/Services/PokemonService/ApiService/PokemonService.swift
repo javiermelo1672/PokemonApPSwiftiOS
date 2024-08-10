@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-public typealias ResultPokemons = AnyPublisher<[PokemonMapper.PokemonList], Error>
+public typealias ResultPokemons = AnyPublisher<PokemonMapper.PokemonData, Error>
 
 final public class PokemonService {
     

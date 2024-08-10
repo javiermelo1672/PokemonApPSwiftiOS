@@ -13,7 +13,7 @@ struct CardComponent: View {
     var cornerRadious: Double = 15
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 5, content: {
+        VStack(alignment: .center, spacing: 5, content: {
             AsyncImage(url: imageUrl, content: { image in
                 imageGen(image: image)
             }, placeholder: {
@@ -31,9 +31,11 @@ struct CardComponent: View {
 extension CardComponent {
     @ViewBuilder
     internal func generateLabel(text: String) -> some View {
-        Text(text)
+        Text(text.capitalized)
+            .foregroundColor(PokemonColor.Colors.pokeBlue.swiftUIColor)
             .lineLimit(2)
-            .font(.body)
+            .font(.title3)
+            .bold()
     }
     
     @ViewBuilder

@@ -12,6 +12,8 @@ import Foundation
 public enum GlobalStrings {
   /// Detalle
   public static let detail = GlobalStrings.tr("Localizable", "detail", fallback: "Detalle")
+  /// Aquí no hay nada
+  public static let emptyMessage = GlobalStrings.tr("Localizable", "empty_message", fallback: "Aquí no hay nada")
   /// Localizable.strings
   ///   Created by Javier Duvan Hospital Melo on 10/08/24.
   public static let home = GlobalStrings.tr("Localizable", "home", fallback: "Inicio")

@@ -9,7 +9,7 @@ import Foundation
 
 public protocol HomeScreenProtocol: ObservableObject {
     
-    var pokemonList: [PokemonModel]? { get set }
+    var pokemonList: PokemonModelList? { get set }
     var pokemonSelected: PokemonModel? { get set }
     var routeDestination: HomeRoute { get set }
     var isLoading: Bool { get set }

@@ -12,7 +12,6 @@ public enum PokemonEnpoint {
 
     public func url(baseURL: URL) -> URL {
         var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
-        components?.path.append("pokemon")
         return components?.url ?? baseURL
     }
 }
