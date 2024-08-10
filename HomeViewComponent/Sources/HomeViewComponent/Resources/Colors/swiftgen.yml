@@ -1,0 +1,21 @@
+
+ fonts:
+  inputs: Fonts
+  outputs:
+     - templateName: swift5
+       params:
+         forceProvidesNamespaces: true
+         enumName: DinersFonts
+         publicAccess: public
+       output: Fonts/DinersFonts.swift
+ xcassets:
+   inputs:
+     - Colors/ColorPalette.xcassets
+#     - ProFeatures.xcassets
+   outputs:
+     - templateName: swift5
+       params:
+         forceProvidesNamespaces: true
+         enumName: DinersColor
+         publicAccess: public
+       output: Colors/ColorPalette.swift

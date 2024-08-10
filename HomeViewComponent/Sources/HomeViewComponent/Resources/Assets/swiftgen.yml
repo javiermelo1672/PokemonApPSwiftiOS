@@ -1,0 +1,10 @@
+ xcassets:
+   inputs:
+     - Media.xcassets
+   outputs:
+     - templateName: swift5
+       params:
+         forceProvidesNamespaces: true
+         enumName: DinersAssets
+         publicAccess: public
+       output: DinersAssets.swift
