@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,7 @@
 		43CF0D282C67CAF60080754C /* PokemonApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF0D272C67CAF60080754C /* PokemonApiTests.swift */; };
 		43CF0D322C67CAF60080754C /* PokemonApiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF0D312C67CAF60080754C /* PokemonApiUITests.swift */; };
 		43CF0D342C67CAF60080754C /* PokemonApiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF0D332C67CAF60080754C /* PokemonApiUITestsLaunchTests.swift */; };
+		43CF0D422C67D4BC0080754C /* HomeViewComponent in Frameworks */ = {isa = PBXBuildFile; productRef = 43CF0D412C67D4BC0080754C /* HomeViewComponent */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43CF0D422C67D4BC0080754C /* HomeViewComponent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +145,9 @@
 			dependencies = (
 			);
 			name = PokemonApi;
+			packageProductDependencies = (
+				43CF0D412C67D4BC0080754C /* HomeViewComponent */,
+			);
 			productName = PokemonApi;
 			productReference = 43CF0D132C67CAF50080754C /* PokemonApi.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +220,9 @@
 				Base,
 			);
 			mainGroup = 43CF0D0A2C67CAF50080754C;
+			packageReferences = (
+				43CF0D402C67D4BC0080754C /* XCLocalSwiftPackageReference "HomeViewComponent" */,
+			);
 			productRefGroup = 43CF0D142C67CAF50080754C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -588,6 +596,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		43CF0D402C67D4BC0080754C /* XCLocalSwiftPackageReference "HomeViewComponent" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = HomeViewComponent;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		43CF0D412C67D4BC0080754C /* HomeViewComponent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HomeViewComponent;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 43CF0D0B2C67CAF50080754C /* Project object */;
 }

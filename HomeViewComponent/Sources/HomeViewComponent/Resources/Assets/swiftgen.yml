@@ -5,6 +5,6 @@
      - templateName: swift5
        params:
          forceProvidesNamespaces: true
-         enumName: DinersAssets
+         enumName: PokemonAssets
          publicAccess: public
-       output: DinersAssets.swift
+       output: PokemonAssets.swift
