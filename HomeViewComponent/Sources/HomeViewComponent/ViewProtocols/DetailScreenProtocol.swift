@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol DetailScreenProtocol: ObservableObject {
-
+    var pokemonSelected: PokemonModel { get set }
 }

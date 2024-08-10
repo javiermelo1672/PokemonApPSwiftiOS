@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "HomeViewComponent",
     defaultLocalization: "es-419",
-    platforms: [.iOS(.v15)],
+    platforms: [.iOS(.v16)],
     products: [
         .library(
             name: "HomeViewComponent",

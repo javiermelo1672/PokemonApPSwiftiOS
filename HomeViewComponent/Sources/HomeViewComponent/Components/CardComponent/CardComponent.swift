@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CardComponent: View {
-    let imageUrl: URL
+    let imageUrl: URL?
     let labelName: String
     var cornerRadious: Double = 15
     
@@ -19,8 +19,11 @@ struct CardComponent: View {
             }, placeholder: {
                 imageGen(image: PokemonAssets.pokeball.swiftUIImage)
             })
-            generateLabel(text: labelName).padding(.all, 10)
-        }).background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 15))
+            generateLabel(text: labelName)
+                .padding(.horizontal, 10)
+                .padding(.top, 10)
+            Spacer(minLength: 10)
+        }).frame(height: 280).background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 15))
     }
 }
 
