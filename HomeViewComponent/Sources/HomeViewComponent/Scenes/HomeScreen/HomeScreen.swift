@@ -7,11 +7,15 @@
 
 import SwiftUI
 
-struct HomeScreen<Model>: View where Model: HomeScreenProtocol {
+public struct HomeScreen<Model>: View where Model: HomeScreenProtocol {
     
     @ObservedObject private var viewModel: Model
     
-    var body: some View {
+    public init(_ viewModel: Model) {
+        _viewModel = ObservedObject(wrappedValue: viewModel)
+    }
+    
+    public var body: some View {
         NavigationStack {
             GeometryReader { reader in
                 ScrollView {
@@ -40,13 +44,15 @@ extension HomeScreen {
     
     internal var createListView: some View {
         LazyVGrid(columns: createGrid(), content: {
-            ForEach(viewModel.pokemonList, id: \.self) { item in
-                Button(action: {
-                    viewModel.onTapCard(pokemonSelected: item)
-                }, label: {
-                    CardComponent(imageUrl: URL(string: item.image),
-                                  labelName: item.labelName)
-                })
+            if let pokemonList = viewModel.pokemonList {
+                ForEach(pokemonList, id: \.self) { item in
+                    Button(action: {
+                        viewModel.onTapCard(pokemonSelected: item)
+                    }, label: {
+                        CardComponent(imageUrl: URL(string: item.image),
+                                      labelName: item.labelName)
+                    })
+                }
             }
         })
     }
