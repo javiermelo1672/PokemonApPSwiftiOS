@@ -20,8 +20,6 @@ struct CardComponent: View {
                 imageGen(image: PokemonAssets.pokeball.swiftUIImage)
             })
             generateLabel(text: labelName).padding(.all, 10)
-            
-                
         }).background(.ultraThickMaterial, in: RoundedRectangle(cornerRadius: 15))
     }
 }

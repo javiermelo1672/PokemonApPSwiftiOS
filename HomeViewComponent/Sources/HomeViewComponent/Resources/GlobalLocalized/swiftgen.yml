@@ -1,0 +1,9 @@
+strings:
+  inputs: es-419.lproj
+  outputs:
+    - templateName: structured-swift5
+      params:
+        forceProvidesNamespaces: true  # Enforces namespacing for generated strings
+        enumName: GlobalStrings
+        publicAccess: public  # Uncomment if you want the enum to be public
+      output: GlobalStrings.swift
