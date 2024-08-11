@@ -11,4 +11,5 @@ import HomeViewComponent
 
 protocol PokemonInfoUseCase {
     func invoke(_ initialData: PokemonModelList?, cancellables: inout Set<AnyCancellable>, response: @escaping (PokemonModelList?) -> Void)
+    
 }

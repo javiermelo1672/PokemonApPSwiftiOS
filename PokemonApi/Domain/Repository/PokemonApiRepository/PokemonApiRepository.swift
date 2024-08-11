@@ -11,4 +11,5 @@ import Combine
 
 protocol PokemonApiRepository {
     func getPokemons(_ baseurl: String, cancellables: inout Set<AnyCancellable>, completion: @escaping (NetworkComponent.PokemonMapper.PokemonData?) -> Void)
+    func getInfoPokemon(_ baseurl: String, cancellables: inout Set<AnyCancellable>, completion: @escaping (NetworkComponent.PokemonInfoMapper.PokemonInfoData?) -> Void)
 }

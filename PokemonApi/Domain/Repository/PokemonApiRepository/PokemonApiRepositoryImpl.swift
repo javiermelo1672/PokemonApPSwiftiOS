@@ -11,17 +11,40 @@ import Combine
 
 class PokemonApiRepositoryImpl: PokemonApiRepository {
     
-    func getPokemons(_ baseurl: String, cancellables: inout Set<AnyCancellable>, completion: @escaping (NetworkComponent.PokemonMapper.PokemonData?) -> Void) {
-        let pokemonsService = PokemonService(baseUrlString: baseurl)
-        pokemonsService.getPokemonsPublisher().sink(receiveCompletion: { result in
+    func getPokemons(_ baseurl: String,
+                     cancellables: inout Set<AnyCancellable>,
+                     completion: @escaping (NetworkComponent.PokemonMapper.PokemonData?) -> Void) {
+        self.fetchData(baseurl,
+                       cancellables: &cancellables,
+                       service: { PokemonService(baseUrlString: $0).getPokemonsPublisher() },
+                       completion: completion)
+    }
+    
+    func getInfoPokemon(_ baseurl: String,
+                        cancellables: inout Set<AnyCancellable>,
+                        completion: @escaping (NetworkComponent.PokemonInfoMapper.PokemonInfoData?) -> Void) {
+        self.fetchData(baseurl,
+                       cancellables: &cancellables,
+                       service: { PokemonInfoService(baseUrlString: $0).getPokemonsPublisher() },
+                       completion: completion)
+    }
+}
+
+extension PokemonApiRepositoryImpl {
+    internal func fetchData<T>(_ baseurl: String,
+                     cancellables: inout Set<AnyCancellable>,
+                     service: (String) -> AnyPublisher<T, Error>,
+                     completion: @escaping (T?) -> Void) {
+        let publisher = service(baseurl)
+        publisher.sink(receiveCompletion: { result in
             switch result {
             case .failure(_):
                 completion(nil)
             case .finished:
                 break
             }
-        }, receiveValue: { pokemonsList in
-            completion(pokemonsList)
+        }, receiveValue: { data in
+            completion(data)
         }).store(in: &cancellables)
     }
 }
