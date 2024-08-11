@@ -11,11 +11,13 @@ import SwiftUI
 import Combine
 
 class HomeViewModel: HomeScreenProtocol {
-    
+
     @Published var pokemonList: PokemonModelList?
     @Published var routeDestination: HomeRoute = .none
     @Published var isLoading: Bool = true
+    @Published var isLoadingPagination: Bool = true
     @Published var showNextScreen: Bool = false
+    @Published var pagination: Int = 0
     var pokemonSelected: PokemonModel?
     private let pokemonInfoUseCase: PokemonInfoUseCase
     private var cancellables = Set<AnyCancellable>()
@@ -41,6 +43,14 @@ class HomeViewModel: HomeScreenProtocol {
 // MARK: - Services Bussiness Logic
 extension HomeViewModel {
     
+    func getItemsPerPagination() {
+        self.pagination += 20
+        self.isLoadingPagination = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.getPokemonList()
+        })
+    }
+    
     private func getPokemonList() {
         let url = self.pokemonList?.pokemonList.isEmpty ?? true ? "" : self.pokemonList?.nextUrl ?? ""
         self.pokemonInfoUseCase.invoke(url, cancellables: &cancellables, response: { [weak self] pokemonData in
@@ -61,6 +71,7 @@ extension HomeViewModel {
                     }
                     withAnimation {
                         self.isLoading = false
+                        self.isLoadingPagination = false
                     }
                 })
             }

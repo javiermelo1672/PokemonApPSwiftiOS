@@ -56,15 +56,24 @@ extension HomeScreen {
     internal func createListView(reader: GeometryProxy) -> some View {
         if let pokemonList = viewModel.pokemonList {
             LazyVGrid(columns: createGrid(), content: {
-                ForEach(pokemonList.pokemonList, id: \.self) { item in
+                let indices = pokemonList.pokemonList.indices
+                ForEach(indices, id: \.self) { index in
+                    let item = pokemonList.pokemonList[index]
+                    let isLastItem = index == pokemonList.pokemonList.indices.last
                     Button(action: {
                         viewModel.onTapCard(pokemonSelected: item)
                     }, label: {
                         CardComponent(imageUrl: URL(string: item.image),
                                       labelName: item.labelName)
-                    })
+                    }).onAppear {
+                        guard isLastItem && index >= (viewModel.pagination - 1) else { return }
+                        viewModel.getItemsPerPagination()
+                    }
                 }
             }).padding(.horizontal, 15)
+            if viewModel.isLoadingPagination {
+                ProgressView().padding(.vertical, 30)
+            }
         } else {
             skeletonView(view: createEmptyView(), reader: reader)
         }
