@@ -11,7 +11,7 @@ public enum PokemonEnpoint {
     case get
 
     public func url(baseURL: URL) -> URL {
-        var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
+        let components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
         return components?.url ?? baseURL
     }
 }
