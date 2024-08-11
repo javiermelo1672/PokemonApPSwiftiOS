@@ -11,13 +11,23 @@ import SwiftUI
 import Combine
 
 class HomeViewModel: HomeScreenProtocol {
-
+    
     @Published var pokemonList: PokemonModelList?
     @Published var routeDestination: HomeRoute = .none
     @Published var isLoading: Bool = true
     @Published var isLoadingPagination: Bool = true
     @Published var showNextScreen: Bool = false
     @Published var pagination: Int = 0
+    @Published var duoColumn: Bool = true {
+        didSet {
+            if duoColumn {
+                self.columns = [GridItem(.flexible()), GridItem(.flexible())]
+            } else {
+                self.columns = [GridItem(.flexible())]
+            }
+        }
+    }
+    @Published var columns = [GridItem(.flexible()), GridItem(.flexible())]
     var pokemonSelected: PokemonModel?
     private let pokemonInfoUseCase: PokemonInfoUseCase
     private var cancellables = Set<AnyCancellable>()

@@ -10,8 +10,7 @@ import SwiftUI
 struct CardComponent: View {
     let imageUrl: URL?
     let labelName: String
-    var cornerRadious: Double = 15
-    
+    var cornerRadious: Double = 15    
     var body: some View {
         VStack(alignment: .center, spacing: 5, content: {
             AsyncImage(url: imageUrl, content: { image in

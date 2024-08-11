@@ -24,6 +24,15 @@ public struct HomeScreen<Model>: View where Model: HomeScreenProtocol {
                         createListView(reader: reader)
                     }
                 }.navigationTitle(GlobalStrings.home)
+                    .navigationBarTitleDisplayMode(.inline).toolbar(content: {
+                    ToolbarItem(placement: .topBarTrailing, content: {
+                        Button(action: {
+                            viewModel.duoColumn.toggle()
+                        }, label: {
+                            Image(systemName: viewModel.duoColumn ? "list.bullet" : "square.grid.2x2.fill")
+                        })
+                    })
+                })
             }
         }
     }
@@ -55,7 +64,7 @@ extension HomeScreen {
     @ViewBuilder
     internal func createListView(reader: GeometryProxy) -> some View {
         if let pokemonList = viewModel.pokemonList {
-            LazyVGrid(columns: createGrid(), content: {
+            LazyVGrid(columns: viewModel.columns, content: {
                 let indices = pokemonList.pokemonList.indices
                 ForEach(indices, id: \.self) { index in
                     let item = pokemonList.pokemonList[index]
@@ -77,13 +86,5 @@ extension HomeScreen {
         } else {
             skeletonView(view: createEmptyView(), reader: reader)
         }
-    }
-    
-    internal func createGrid() -> [GridItem] {
-        let columns = [
-            GridItem(.flexible()),
-            GridItem(.flexible())
-        ]
-        return columns
     }
 }

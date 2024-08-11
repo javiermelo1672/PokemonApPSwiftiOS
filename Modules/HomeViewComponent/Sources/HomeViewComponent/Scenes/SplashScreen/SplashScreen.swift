@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-struct SwiftUIView: View {
-    var body: some View {
+public struct SplashScreen: View {
+    public init() {
+    }
+    public var body: some View {
         VStack(alignment: .center) {
             Spacer()
             PokemonAssets.pokemonSplash.swiftUIImage
@@ -23,5 +25,5 @@ struct SwiftUIView: View {
 }
 
 #Preview {
-    SwiftUIView()
+    SplashScreen()
 }

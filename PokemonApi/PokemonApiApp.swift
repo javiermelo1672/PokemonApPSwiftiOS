@@ -6,12 +6,22 @@
 //
 
 import SwiftUI
+import HomeViewComponent
 
 @main
 struct PokemonApiApp: App {
+    @State var showSplashScreen: Bool = true
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            if showSplashScreen {
+                SplashScreen().onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                        self.showSplashScreen = false
+                    })
+                }
+            } else {
+                HomeView()
+            }
         }
     }
 }
