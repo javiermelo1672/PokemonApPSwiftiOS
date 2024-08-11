@@ -9,25 +9,34 @@ import XCTest
 import Combine
 @testable import NetworkComponent
 
-class PokemonServiceTests: XCTestCase {
+class PokemonInfoServiceTest: XCTestCase {
     
     private var cancellables = Set<AnyCancellable>()
     
     let jsonString = """
         {
-          "count": 1,
-          "next": "",
-          "previous": null,
-          "results": [
+          "abilities": [
             {
-              "name": "one",
-              "url": ""
-            },
-            {
-              "name": "two",
-              "url": ""
+              "ability": {
+                "name": "overgrow",
+                "url": ""
+              }
             }
-        ]
+          ],
+          "height": 10,
+          "weight": 130,
+          "sprites": {
+                "back_default": "example"
+           },
+           "stats": [
+                {
+                    "base_stat": 60,
+                    "effort": 0,
+                    "stat": {
+                        "name": "hp"
+                    }
+                }
+            ]
         }
         """
     
@@ -38,7 +47,7 @@ class PokemonServiceTests: XCTestCase {
         mockHttpClient.mockedResponse = HTTPURLResponse(url: URL(string: baseUrlString)!,
                                                         statusCode: 200, httpVersion: nil, headerFields: nil)
         
-        let sut = PokemonService(httpClient: mockHttpClient, baseUrlString: baseUrlString)
+        let sut = PokemonInfoService(httpClient: mockHttpClient, baseUrlString: baseUrlString)
         
         let expectation = self.expectation(description: "Publisher should finish")
         
@@ -61,7 +70,7 @@ class PokemonServiceTests: XCTestCase {
         let mockHttpClient = MockURLSession()
         mockHttpClient.mockedError = NSError(domain: "TestError", code: -1, userInfo: nil)
         
-        let sut = PokemonService(httpClient: mockHttpClient, baseUrlString: baseUrlString)
+        let sut = PokemonInfoService(httpClient: mockHttpClient, baseUrlString: baseUrlString)
         
         let expectation = self.expectation(description: "Publisher should fail")
         
@@ -87,7 +96,7 @@ class PokemonServiceTests: XCTestCase {
         mockHttpClient.mockedResponse = HTTPURLResponse(url: URL(string: baseUrlString)!,
                                                         statusCode: 200, httpVersion: nil, headerFields: nil)
         
-        let sut = PokemonService(httpClient: mockHttpClient, baseUrlString: baseUrlString)
+        let sut = PokemonInfoService(httpClient: mockHttpClient, baseUrlString: baseUrlString)
         
         let expectation = self.expectation(description: "Publisher should fail with invalid response")
         
@@ -103,30 +112,5 @@ class PokemonServiceTests: XCTestCase {
             .store(in: &cancellables)
         
         waitForExpectations(timeout: 1.0, handler: nil)
-    }
-}
-
-class MockURLSession: URLSession {
-    var mockedData: Data?
-    var mockedResponse: URLResponse?
-    var mockedError: Error?
-
-    override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        let task = MockURLSessionDataTask(completionHandler: {
-            completionHandler(self.mockedData, self.mockedResponse, self.mockedError)
-        })
-        return task
-    }
-
-    class MockURLSessionDataTask: URLSessionDataTask {
-        private let completionHandler: () -> Void
-
-        init(completionHandler: @escaping () -> Void) {
-            self.completionHandler = completionHandler
-        }
-
-        override func resume() {
-            completionHandler()
-        }
     }
 }
