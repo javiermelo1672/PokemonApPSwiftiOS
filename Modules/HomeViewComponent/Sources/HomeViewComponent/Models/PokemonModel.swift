@@ -10,24 +10,24 @@ import Foundation
 public struct PokemonModelList {
     public var pokemonList: [PokemonModel]
     public var nextUrl: String
-    public var pokemonInfo: PokemonInfoModel?
     
-    public init(pokemonList: [PokemonModel], nextUrl: String, pokemonInfo: PokemonInfoModel? = nil) {
+    public init(pokemonList: [PokemonModel], nextUrl: String) {
         self.pokemonList = pokemonList
         self.nextUrl = nextUrl
-        self.pokemonInfo = pokemonInfo
     }
 }
 
 public struct PokemonModel: Hashable, Identifiable {
     public let id: String
-    public let image: String
+    public var image: String
     public let labelName: String
+    public var pokemonInfo: PokemonInfoModel?
     
-    public init(id: String, image: String, labelName: String) {
+    public init(id: String, image: String, labelName: String, pokemonInfo: PokemonInfoModel? = nil) {
         self.id = id
         self.image = image
         self.labelName = labelName
+        self.pokemonInfo = pokemonInfo
     }
     
     public func hash(into hasher: inout Hasher) {

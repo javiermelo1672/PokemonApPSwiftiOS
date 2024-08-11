@@ -52,15 +52,15 @@ public final class PokemonInfoMapper {
     }
     
     public struct Sprites: Codable {
-        public let back_default: String?
+        public let front_default: String?
         
         enum CodingKeys: String, CodingKey {
-            case back_default
+            case front_default
         }
         
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            back_default = try container.decodeIfPresent(String.self, forKey: .back_default)
+            front_default = try container.decodeIfPresent(String.self, forKey: .front_default)
         }
         
     }

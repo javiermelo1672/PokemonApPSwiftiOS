@@ -49,10 +49,11 @@ public struct Ability {
 }
 
 public struct Sprites {
-    public let bacDefault: String?
+
+    public let frontDefault: String?
     
-    public init(bacDefault: String?) {
-        self.bacDefault = bacDefault
+    public init(frontDefault: String?) {
+        self.frontDefault = frontDefault
     }
 }
 

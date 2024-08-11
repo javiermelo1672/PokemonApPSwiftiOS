@@ -74,7 +74,7 @@ extension PokemonInfoUseCaseImpl {
         for stat in pokemonInfo.stats {
             stats.append(Stats(id: stat.id, baseStat: stat.base_stat, effort: stat.effort, stat: Stat(name: stat.stat?.name ?? "")))
         }
-        return PokemonInfoModel(abilities: abilities, height: pokemonInfo.height, weight: pokemonInfo.weight, sprites: Sprites(bacDefault: pokemonInfo.sprites.back_default), stats: stats)
+        return PokemonInfoModel(abilities: abilities, height: pokemonInfo.height, weight: pokemonInfo.weight, sprites: Sprites(frontDefault: pokemonInfo.sprites.front_default), stats: stats)
         
     }
 }
