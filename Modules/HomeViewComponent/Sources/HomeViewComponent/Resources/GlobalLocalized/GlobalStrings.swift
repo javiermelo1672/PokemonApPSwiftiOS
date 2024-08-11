@@ -10,13 +10,25 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum GlobalStrings {
+  /// Habilidades
+  public static let abilities = GlobalStrings.tr("Localizable", "abilities", fallback: "Habilidades")
+  /// Base
+  public static let base = GlobalStrings.tr("Localizable", "base", fallback: "Base")
   /// Detalle
   public static let detail = GlobalStrings.tr("Localizable", "detail", fallback: "Detalle")
-  /// Aquí no hay nada
-  public static let emptyMessage = GlobalStrings.tr("Localizable", "empty_message", fallback: "Aquí no hay nada")
+  /// Esfuerzo
+  public static let effort = GlobalStrings.tr("Localizable", "effort", fallback: "Esfuerzo")
+  /// Aquí no hay nada 🥺
+  public static let emptyMessage = GlobalStrings.tr("Localizable", "empty_message", fallback: "Aquí no hay nada 🥺")
+  /// Altura
+  public static let height = GlobalStrings.tr("Localizable", "height", fallback: "Altura")
   /// Localizable.strings
   ///   Created by Javier Duvan Hospital Melo on 10/08/24.
   public static let home = GlobalStrings.tr("Localizable", "home", fallback: "Inicio")
+  /// Estadísticas
+  public static let statics = GlobalStrings.tr("Localizable", "statics", fallback: "Estadísticas")
+  /// Peso
+  public static let weight = GlobalStrings.tr("Localizable", "weight", fallback: "Peso")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

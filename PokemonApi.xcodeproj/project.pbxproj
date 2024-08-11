@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		433EF77B2C69796A00B6B07B /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433EF77A2C69796A00B6B07B /* DetailView.swift */; };
 		43CF0D172C67CAF50080754C /* PokemonApiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF0D162C67CAF50080754C /* PokemonApiApp.swift */; };
 		43CF0D1B2C67CAF60080754C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43CF0D1A2C67CAF60080754C /* Assets.xcassets */; };
 		43CF0D1E2C67CAF60080754C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43CF0D1D2C67CAF60080754C /* Preview Assets.xcassets */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		433EF77A2C69796A00B6B07B /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		43CF0D132C67CAF50080754C /* PokemonApi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokemonApi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CF0D162C67CAF50080754C /* PokemonApiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonApiApp.swift; sourceTree = "<group>"; };
 		43CF0D1A2C67CAF60080754C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,6 +93,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		433EF7792C69795D00B6B07B /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				433EF77A2C69796A00B6B07B /* DetailView.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
 		43CF0D0A2C67CAF50080754C = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +213,7 @@
 		43CF0D4A2C67FB3C0080754C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				433EF7792C69795D00B6B07B /* DetailView */,
 				43CF0D502C67FC5A0080754C /* HomeView */,
 			);
 			path = Views;
@@ -366,6 +377,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43CF0D4F2C67FB6D0080754C /* DetailHomeViewModel.swift in Sources */,
+				433EF77B2C69796A00B6B07B /* DetailView.swift in Sources */,
 				43CF0D5D2C680B950080754C /* PokemonInfoUseCase.swift in Sources */,
 				43CF0D572C6808550080754C /* PokemonApiRepository.swift in Sources */,
 				43CF0D4D2C67FB570080754C /* HomeViewModel.swift in Sources */,

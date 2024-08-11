@@ -20,7 +20,9 @@ struct HomeView: View {
                 case .none:
                     Text("")
                 case .toDetail:
-                    Text("")
+                    if let pokemonS = homeViewModel.pokemonSelected {
+                        DetailView(pokemonSelected: pokemonS)
+                    }
                 }
         })
     }

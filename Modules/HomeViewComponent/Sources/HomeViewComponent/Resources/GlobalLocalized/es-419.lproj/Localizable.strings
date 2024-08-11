@@ -6,3 +6,9 @@
 "home" = "Inicio";
 "detail" = "Detalle";
 "empty_message" = "Aquí no hay nada 🥺";
+"abilities" = "Habilidades";
+"weight" = "Peso";
+"height" = "Altura";
+"statics" = "Estadísticas";
+"base" = "Base";
+"effort" = "Esfuerzo";

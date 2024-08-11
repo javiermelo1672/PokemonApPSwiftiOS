@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import HomeViewComponent
+
+class DetailHomeViewModel: DetailScreenProtocol {
+    
+    @Published var pokemonSelected: HomeViewComponent.PokemonModel
+    
+    required init(pokemonSelected: HomeViewComponent.PokemonModel) {
+        self.pokemonSelected = pokemonSelected
+    }
+}
