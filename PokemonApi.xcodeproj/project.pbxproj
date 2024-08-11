@@ -22,6 +22,8 @@
 		43CF0D5B2C6808710080754C /* PokemonApiRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF0D5A2C6808710080754C /* PokemonApiRepositoryImpl.swift */; };
 		43CF0D5D2C680B950080754C /* PokemonInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF0D5C2C680B950080754C /* PokemonInfoUseCase.swift */; };
 		43CF0D5F2C680B9D0080754C /* PokemonInfoUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CF0D5E2C680B9D0080754C /* PokemonInfoUseCaseImpl.swift */; };
+		43CF0D622C68F3680080754C /* HomeViewComponent in Frameworks */ = {isa = PBXBuildFile; productRef = 43CF0D612C68F3680080754C /* HomeViewComponent */; };
+		43CF0D652C68F3750080754C /* NetworkComponent in Frameworks */ = {isa = PBXBuildFile; productRef = 43CF0D642C68F3750080754C /* NetworkComponent */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				43CF0D422C67D4BC0080754C /* HomeViewComponent in Frameworks */,
+				43CF0D652C68F3750080754C /* NetworkComponent in Frameworks */,
+				43CF0D622C68F3680080754C /* HomeViewComponent in Frameworks */,
 				43CF0D552C6807C60080754C /* NetworkComponent in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +244,8 @@
 			packageProductDependencies = (
 				43CF0D412C67D4BC0080754C /* HomeViewComponent */,
 				43CF0D542C6807C60080754C /* NetworkComponent */,
+				43CF0D612C68F3680080754C /* HomeViewComponent */,
+				43CF0D642C68F3750080754C /* NetworkComponent */,
 			);
 			productName = PokemonApi;
 			productReference = 43CF0D132C67CAF50080754C /* PokemonApi.app */;
@@ -314,8 +320,8 @@
 			);
 			mainGroup = 43CF0D0A2C67CAF50080754C;
 			packageReferences = (
-				43CF0D402C67D4BC0080754C /* XCLocalSwiftPackageReference "HomeViewComponent" */,
-				43CF0D532C6807C60080754C /* XCLocalSwiftPackageReference "NetworkComponent" */,
+				43CF0D602C68F3680080754C /* XCLocalSwiftPackageReference "Modules/HomeViewComponent" */,
+				43CF0D632C68F3750080754C /* XCLocalSwiftPackageReference "Modules/NetworkComponent" */,
 			);
 			productRefGroup = 43CF0D142C67CAF50080754C /* Products */;
 			projectDirPath = "";
@@ -698,13 +704,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		43CF0D402C67D4BC0080754C /* XCLocalSwiftPackageReference "HomeViewComponent" */ = {
+		43CF0D602C68F3680080754C /* XCLocalSwiftPackageReference "Modules/HomeViewComponent" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = HomeViewComponent;
+			relativePath = Modules/HomeViewComponent;
 		};
-		43CF0D532C6807C60080754C /* XCLocalSwiftPackageReference "NetworkComponent" */ = {
+		43CF0D632C68F3750080754C /* XCLocalSwiftPackageReference "Modules/NetworkComponent" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = NetworkComponent;
+			relativePath = Modules/NetworkComponent;
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -714,6 +720,14 @@
 			productName = HomeViewComponent;
 		};
 		43CF0D542C6807C60080754C /* NetworkComponent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = NetworkComponent;
+		};
+		43CF0D612C68F3680080754C /* HomeViewComponent */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = HomeViewComponent;
+		};
+		43CF0D642C68F3750080754C /* NetworkComponent */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NetworkComponent;
 		};

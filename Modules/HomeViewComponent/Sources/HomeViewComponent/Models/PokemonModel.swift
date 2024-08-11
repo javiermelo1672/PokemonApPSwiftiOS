@@ -10,10 +10,12 @@ import Foundation
 public struct PokemonModelList {
     public var pokemonList: [PokemonModel]
     public var nextUrl: String
+    public var pokemonInfo: PokemonInfoModel?
     
-    public init(pokemonList: [PokemonModel], nextUrl: String) {
+    public init(pokemonList: [PokemonModel], nextUrl: String, pokemonInfo: PokemonInfoModel? = nil) {
         self.pokemonList = pokemonList
         self.nextUrl = nextUrl
+        self.pokemonInfo = pokemonInfo
     }
 }
 

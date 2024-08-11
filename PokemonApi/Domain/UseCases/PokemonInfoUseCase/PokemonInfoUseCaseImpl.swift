@@ -11,7 +11,6 @@ import NetworkComponent
 import HomeViewComponent
 
 class PokemonInfoUseCaseImpl: PokemonInfoUseCase {
-    
     private var pokemonApiRepository: PokemonApiRepository
     
     init(pokemonApiRepository: PokemonApiRepository = PokemonApiRepositoryImpl()) {
@@ -42,6 +41,17 @@ class PokemonInfoUseCaseImpl: PokemonInfoUseCase {
             }
         }
     }
+    
+    func invoke(_ baseurl: String, cancellables: inout Set<AnyCancellable>, completion: @escaping (HomeViewComponent.PokemonInfoModel?) -> Void) {
+        self.pokemonApiRepository.getInfoPokemon(baseurl, cancellables: &cancellables, completion: { [weak self] pokemonInfo in
+            guard let self = self else { return }
+            guard let localPokemonData = pokemonInfo else {
+                completion(nil)
+                return
+            }
+            completion(self.convertPokemonInfoNetwork(pokemonInfo: localPokemonData))
+        })
+    }
 }
 
 extension PokemonInfoUseCaseImpl {
@@ -53,5 +63,18 @@ extension PokemonInfoUseCaseImpl {
                                              labelName: item.name ?? ""))
         }
         return PokemonModelList(pokemonList: pokemonModel, nextUrl: list.next)
+    }
+    
+    internal func convertPokemonInfoNetwork(pokemonInfo: PokemonInfoMapper.PokemonInfoData) -> PokemonInfoModel {
+        var abilities: [HomeViewComponent.Abilities] = []
+        var stats: [HomeViewComponent.Stats] = []
+        for abilitie in pokemonInfo.abilities {
+            abilities.append(Abilities(id: abilitie.id, ability: Ability(name: abilitie.ability?.name)))
+        }
+        for stat in pokemonInfo.stats {
+            stats.append(Stats(id: stat.id, baseStat: stat.base_stat, effort: stat.effort, stat: Stat(name: stat.stat?.name ?? "")))
+        }
+        return PokemonInfoModel(abilities: abilities, height: pokemonInfo.height, weight: pokemonInfo.weight, sprites: Sprites(bacDefault: pokemonInfo.sprites.back_default), stats: stats)
+        
     }
 }
