@@ -110,23 +110,23 @@ class MockURLSession: URLSession {
     var mockedData: Data?
     var mockedResponse: URLResponse?
     var mockedError: Error?
-
+    
     override func dataTask(with request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
-        let task = MockURLSessionDataTask(completionHandler: {
+        let task = MockURLSessionDataTask {
             completionHandler(self.mockedData, self.mockedResponse, self.mockedError)
-        })
+        }
         return task
     }
+}
 
-    class MockURLSessionDataTask: URLSessionDataTask {
-        private let completionHandler: () -> Void
-
-        init(completionHandler: @escaping () -> Void) {
-            self.completionHandler = completionHandler
-        }
-
-        override func resume() {
-            completionHandler()
-        }
+class MockURLSessionDataTask: URLSessionDataTask {
+    private let completionHandler: () -> Void
+    
+    init(completionHandler: @escaping () -> Void) {
+        self.completionHandler = completionHandler
+    }
+    
+    override func resume() {
+        completionHandler()
     }
 }
