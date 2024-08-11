@@ -17,28 +17,16 @@ class PokemonInfoUseCaseImpl: PokemonInfoUseCase {
         self.pokemonApiRepository = pokemonApiRepository
     }
     
-    func invoke(_ initialData: PokemonModelList?, cancellables: inout Set<AnyCancellable>, response: @escaping (PokemonModelList?) -> Void) {
-        let isInitialRequest = initialData?.pokemonList.isEmpty ?? true
-        let url = isInitialRequest ? "https://pokeapi.co/api/v2/pokemon" : initialData?.nextUrl
-        guard let validUrl = url else {
-            response(nil)
-            return
-        }
-        self.pokemonApiRepository.getPokemons(validUrl, cancellables: &cancellables) { [weak self] list in
+    func invoke(_ nextUrl: String, cancellables: inout Set<AnyCancellable>, response: @escaping (PokemonModelList?) -> Void) {
+        let isInitialRequest = nextUrl.isEmpty ? "https://pokeapi.co/api/v2/pokemon" : nextUrl
+        self.pokemonApiRepository.getPokemons(isInitialRequest, cancellables: &cancellables) { [weak self] list in
             guard let self = self else { return }
             guard let localList = list else {
                 response(nil)
                 return
             }
             let convertedList = self.convertPokemonNetworktoViewList(list: localList)
-            if isInitialRequest {
-                response(convertedList)
-            } else {
-                let updatedList = PokemonModelList(
-                    pokemonList: initialData?.pokemonList ?? [] + convertedList.pokemonList,
-                    nextUrl: localList.next)
-                response(updatedList)
-            }
+            response(convertedList)
         }
     }
     

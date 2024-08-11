@@ -10,6 +10,6 @@ import Combine
 import HomeViewComponent
 
 protocol PokemonInfoUseCase {
-    func invoke(_ initialData: PokemonModelList?, cancellables: inout Set<AnyCancellable>, response: @escaping (PokemonModelList?) -> Void)
+    func invoke(_ nextUrl: String, cancellables: inout Set<AnyCancellable>, response: @escaping (PokemonModelList?) -> Void)
     func invoke(_ baseurl: String, cancellables: inout Set<AnyCancellable>, completion: @escaping (PokemonInfoModel?) -> Void)
 }

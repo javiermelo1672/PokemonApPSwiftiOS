@@ -40,8 +40,10 @@ class HomeViewModel: HomeScreenProtocol {
 
 // MARK: - Services Bussiness Logic
 extension HomeViewModel {
+    
     private func getPokemonList() {
-        self.pokemonInfoUseCase.invoke(self.pokemonList, cancellables: &cancellables, response: { [weak self] pokemonData in
+        let url = self.pokemonList?.pokemonList.isEmpty ?? true ? "" : self.pokemonList?.nextUrl ?? ""
+        self.pokemonInfoUseCase.invoke(url, cancellables: &cancellables, response: { [weak self] pokemonData in
             guard let self = self else { return }
             guard let localPokemonData = pokemonData else {
                 withAnimation {
@@ -50,30 +52,35 @@ extension HomeViewModel {
                 return
             }
             DispatchQueue.main.async {
-                self.pokemonList = localPokemonData
-                self.getPokemonInfo()
+                self.getPokemonInfo(localPokemonData, completion: { finalList in
+                    if self.pokemonList?.pokemonList.isEmpty ?? true {
+                        self.pokemonList = finalList
+                    } else {
+                        self.pokemonList?.nextUrl = localPokemonData.nextUrl
+                        self.pokemonList?.pokemonList.append(contentsOf: finalList.pokemonList)
+                    }
+                    withAnimation {
+                        self.isLoading = false
+                    }
+                })
             }
         })
     }
     
-    private func getPokemonInfo() {
-        guard let localPokemonList = self.pokemonList else { return }
+    private func getPokemonInfo(_ listToProcess: PokemonModelList?, completion: @escaping (PokemonModelList) -> Void) {
+        guard let localPokemonList = listToProcess else { return }
         var updatedPokemonList = localPokemonList
         let dispatchGroup = DispatchGroup()
         for index in updatedPokemonList.pokemonList.indices {
             dispatchGroup.enter()
-            self.pokemonInfoUseCase.invoke(updatedPokemonList.pokemonList[index].image, cancellables: &cancellables) { [weak self] pokemonData in
-                guard let self = self else { return }
+            self.pokemonInfoUseCase.invoke(updatedPokemonList.pokemonList[index].image, cancellables: &cancellables) { pokemonData in
                 updatedPokemonList.pokemonList[index].image = pokemonData?.sprites.frontDefault ?? ""
                 updatedPokemonList.pokemonList[index].pokemonInfo = pokemonData
                 dispatchGroup.leave()
             }
         }
         dispatchGroup.notify(queue: .main) {
-            self.pokemonList = updatedPokemonList
-            withAnimation {
-                self.isLoading = false
-            }
+            completion(updatedPokemonList)
         }
     }
 }
